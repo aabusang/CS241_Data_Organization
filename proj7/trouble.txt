@@ -1,0 +1,39 @@
+
+Parts of this project that gave me the most trouble
+
+1. re-allocating memory for an int *
+   a. What I wanted to do
+      I wanted an int * to store the values read from stdin,
+      but because I don't know the size of the stdin, I used
+      dynamic arrays to malloc and realloc when needed.
+   b. What I got
+      I got my heap currupted because of the way I was reallocating
+      the memory for my int * reading from stdin
+      errmsg: "invalid next size"
+   c. What the problem was
+      The problem was because I was allocating for ints in a char
+      way. So instead of allocating only sizes that are multiple of 4
+      I allocating 2 and next I want to realloc by saying maxSize +=2.
+      so that make maxSize 4 bytes which is not > the sizeof(int) I malloc'd
+      first.
+   d. How I solved it
+      I solved it by first defining maxSize to be a multiple of four
+      maxSize = 2 * (sizeof(int))
+      then realloc with numbers greater than two multiplied by sizeof(int)
+      tmp2 = realloc(tmp1, maxSize += 3 * sizeof(int)
+      instead of 3 I can use any number greater than the initial size 2
+
+2. My findPath function wasn't running the recursive calls
+   -- because I was comparing maze values to 1 instead of '1'
+   -- because I use getchar to read into maze or for some other reason
+   -- that was a problem
+
+3. maze2 would not work:
+   -- I did maze[i] = malloc(N) where N is number of rows
+   -- I should have done maze[i] = malloc(sizeof(int) * N)
+   -- that solved the problem
+
+4. Double free problem when I run maze5.in
+   -- The last line I realloc'd I set tmp1 = tmp2
+   -- meaning the point to the same thing but the end of main I free both
+   -- which cause I error

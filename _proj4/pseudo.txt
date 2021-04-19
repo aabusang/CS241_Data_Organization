@@ -1,0 +1,35 @@
+
+A PROGRAM TO VALID ROMAN NUMERALS AND DECODE THEM
+
+---MAIN AIM -> Learn to use functions
+
+--PSEUDO
+-write a program to convert roman numerals to ascii
+--print error message
+----when I encounter an invalid roman numeral
+----when a roman numeral does not have an ascii equivalent
+----when input is not valid roman numeral character
+----when input string is longer than 15 digits
+-program should be case insensitive
+-note: all character string terminate by a space even at new line
+-roman numerals to use M, D, C, L, X, V, I
+
+
+
+
+--RULES:
+-D, L or V must not repeat in a string
+--write a function to do this
+-M,C,X,I can repeat consecutively up to 3 times but not more
+--use a conter for this or write a function
+-M, C, X can repeat up to 4x if not consecutively
+--use couter for this or write a function if needed
+-IX, IV, III are terminating string, no other letters can follow these
+--use a counter and a boolean for this
+--before and afte rules a - y
+    
+
+
+--NOTE:
+
+

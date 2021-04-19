@@ -1,0 +1,5 @@
+malloc just allocates the memomry
+calloc allocates and initializes the memory to zero
+
+use malloc if you don't need to read memory before writing to it
+else use calloc
