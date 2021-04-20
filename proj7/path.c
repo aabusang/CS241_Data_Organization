@@ -11,15 +11,14 @@
 int findPath(int row, int col, int matrixSize)
 {
   int destination = matrixSize - 1;
-  
   if (row ==  destination && col == destination)
   {
     path[row][col] = 1;
     return 1;
   }
-  if (maze[row][col] == '1')
-  {
 
+  if (maze[row][col] == 1)
+  {
     /* add position as valid path to path array*/
     path[row][col] = 1;
 
@@ -35,7 +34,7 @@ int findPath(int row, int col, int matrixSize)
       numOfRecCalls++;
       return 1;
     }
-    /* path[row][col] = 0; /\* set back to zero cuz failed *\/ */
+    /* set back to zero cuz failed */
     path[row][col] = 0;
   }
 

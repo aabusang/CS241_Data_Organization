@@ -7,13 +7,14 @@
 
 int **maze;
 int **path;
-int **checked;
+
 int N;
 int numOfRecCalls;
 
 int main(void)
 {
-  int i, j, c;
+  int i, j;
+  char c;
   int len = 0, k = 0;
   size_t initSize = 4;
   size_t maxSize = initSize * sizeof(int);
@@ -26,7 +27,7 @@ int main(void)
   {
     if (isdigit(c))
     {
-      if ((len*4) == maxSize)
+      if ((len * 4) == maxSize)
       {
 	maxSize += (initSize * sizeof(int));
 	tmp2 = realloc(tmp1,  maxSize);
@@ -43,34 +44,31 @@ int main(void)
   }
   
   N = sqroot(len);
-  maze = malloc(sizeof(int*) * N);
-  path = malloc(sizeof(int*) * N);
-  checked = malloc(sizeof(int*) * N);
+  maze = malloc(sizeof(int *) * N);
+  path = malloc(sizeof(int *) * N);
     
   for(i = 0; i < N; i++)
   {
     maze[i] = malloc(sizeof(int) * N);
     path[i] = malloc(sizeof(int) * N);
-    checked[i] = malloc(sizeof(int) * N);
     for(j = 0; j < N; j++)
     {
       maze[i][j] = tmp1[k++];
       path[i][j] = 0;
-      checked[i][j] = 0;
     }
   }
   
-  if (findPath(0, 0, N) == 1)
-  {
-    printf("PATH FOUND!\n");
-    printPath();
-  }
-  else
-  {
-    printf("no path found.\n");
-  }
+  /* if (findPath(0, 0, N) == 1) */
+  /* { */
+  /*   printf("PATH FOUND!\n"); */
+  /*   printPath(); */
+  /* } */
+  /* else */
+  /* { */
+  /*   printf("no path found.\n"); */
+  /* } */
   
-  printf("\nN: %d\nCalls: %d\n",N, numOfRecCalls);
+  /* printf("\nN: %d\nCalls: %d\n",N, numOfRecCalls); */
   
   /* free all allocated memory */
   free(tmp1);

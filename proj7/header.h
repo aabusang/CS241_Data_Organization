@@ -3,7 +3,6 @@
 
 extern int **maze;
 extern int **path;
-extern int **checked;
 
 extern int N;
 extern int numOfRecCalls;
