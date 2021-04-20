@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-
+#include <stdbool.h>
 #include "header.h"
 
 
@@ -14,25 +14,26 @@ int numOfRecCalls;
 int main(void)
 {
   int i, j;
-  char c;
-  int value;
+  int c;
   int len = 0, k = 0;
-  size_t initSize = 4;
-  size_t maxSize = initSize * sizeof(int);
+  int initSize = 10;
+  int maxSize = initSize * sizeof(int);
   int *tmp1 = malloc(maxSize);
-  int *tmp2;
-  
+  int *tmp2;  
   numOfRecCalls = 0;
   
   while((c = getchar()) != EOF)
   {
-    if (isdigit(c))
+    if (c == '\n')
     {
-	value = (int)c;
+      continue;
+    }
+    if (c == '0' || c == '1')
+    {
       if ((len * 4) == maxSize)
       {
-	maxSize += (initSize * sizeof(int));
-	tmp2 = realloc(tmp1,  maxSize);
+	maxSize += initSize * sizeof(int);
+	tmp2 = realloc(tmp1, maxSize);
 	if (tmp2 == NULL)
 	{
 	  printf("Computer is out of memory\n");
@@ -41,10 +42,10 @@ int main(void)
 	}
 	tmp1 = tmp2;
       }
-      tmp1[len++] = value;
+      tmp1[len++] = c;
     }
   }
-  
+
   N = sqroot(len);
   maze = malloc(sizeof(int *) * N);
   path = malloc(sizeof(int *) * N);
@@ -60,7 +61,7 @@ int main(void)
     }
   }
   
-  if (findPath(0, 0, N) == 1)
+  if (findPath(0, 0, N) == true)
   {
     printf("PATH FOUND!\n");
     printPath();
@@ -70,7 +71,7 @@ int main(void)
     printf("no path found.\n");
   }
   
-  printf("\nN: %d\nCalls: %d\n",N, numOfRecCalls);
+  printf("\nN: %d\nRecursive Calls: %d\n",N, numOfRecCalls);
   
   /* free all allocated memory */
   free(tmp1);

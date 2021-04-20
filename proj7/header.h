@@ -9,5 +9,5 @@ extern int numOfRecCalls;
 
 
 int sqroot(int);
-int findPath(int, int, int);
+bool findPath(int, int, int);
 void printPath();
