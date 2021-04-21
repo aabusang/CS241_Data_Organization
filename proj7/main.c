@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include <stdbool.h>
 #include "header.h"
 
 
@@ -61,7 +60,7 @@ int main(void)
     }
   }
   
-  if (findPath(0, 0, N) == true)
+  if (findPath(0, 0, N) == 1)
   {
     printf("PATH FOUND!\n");
     printPath();

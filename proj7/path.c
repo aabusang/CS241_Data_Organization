@@ -1,7 +1,6 @@
 /* define all functions to be used in main here */
 
 #include <stdio.h>
-#include <stdbool.h>
 #include "header.h"
 
 /*************
@@ -9,13 +8,13 @@
  *@param col, the colum count of the maze
  *@matrixSize, the size of the matrix - same as N
  *************************************************/
-bool findPath(int row, int col, int matrixSize)
+int findPath(int row, int col, int matrixSize)
 {
   int destination = matrixSize - 1;
   if (row ==  destination && col == destination)
   {
     path[row][col] = 1;
-    return true;
+    return 1;
   }
   /* if I compare maze[row][col] to the integer 1 the program passes all mazes
    *except maze4 with a Sysmalloc: Assertion erro message but when I compare it 
@@ -27,22 +26,23 @@ bool findPath(int row, int col, int matrixSize)
     path[row][col] = 1;
 
     /* check the right of the current cell if can be visited */
-    if (findPath(row, col+1, matrixSize) == true)
+    if (findPath(row, col+1, matrixSize) == 1)
     {
       numOfRecCalls++;
-      return true;
+      return 1;
     }
     /* check the bottom of the current cell if can be visited */
-    if (findPath(row+1, col, matrixSize) == true)
+    if (findPath(row+1, col, matrixSize) == 1)
     {
       numOfRecCalls++;
-      return true;
+      return 1;
     }
     /* set back to zero cuz no way forward */
     path[row][col] = 0;
+    maze[row][col] = 0;
   }
-
-  return false;
+ 
+  return 0;
 }
 
 /******************
