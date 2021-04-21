@@ -41,7 +41,7 @@ bool findPath(int row, int col, int matrixSize)
     /* set back to zero cuz no way forward */
     path[row][col] = 0;
   }
-
+  maze[row][col] = 0;
   return false;
 }
 
