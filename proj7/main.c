@@ -6,61 +6,76 @@
 
 int **maze;
 int **path;
+int **memoized;
 
 int N;
-int numOfRecCalls;
+int last, numOfCalls, memo;
 
 int main(void)
 {
-  int i, j;
-  int c;
-  int len = 0, k = 0;
-  int initSize = 10;
-  int maxSize = initSize * sizeof(int);
-  int *tmp1 = malloc(maxSize);
-  int *tmp2;  
-  numOfRecCalls = 0;
+  size_t maxSize = 4 * sizeof(int);
+  int *buffer = malloc(maxSize);
+  int *newBuffer;
   
+  size_t length = 0;
+  int c, i, j, k = 0;
+  numOfCalls = 0;
+  memo = 0;
+  
+  if (buffer == NULL)
+  {
+    printf("Out of space\n");
+    return 1;
+  }
   while((c = getchar()) != EOF)
   {
-    if (c == '\n')
+    if (c == '1' || c == '0')
     {
-      continue;
-    }
-    if (c == '0' || c == '1')
-    {
-      if ((len * 4) == maxSize)
+      if ((length*4) == maxSize)
       {
-	maxSize += initSize * sizeof(int);
-	tmp2 = realloc(tmp1, maxSize);
-	if (tmp2 == NULL)
+	newBuffer = realloc(buffer, maxSize *=2);
+	if (newBuffer == NULL)
 	{
 	  printf("Computer is out of memory\n");
-	  free(tmp1);
+	  free(buffer);
 	  return 1;
 	}
-	tmp1 = tmp2;
+	buffer = newBuffer;
       }
-      tmp1[len++] = c;
+      buffer[length] = myAtoi(c);
+      length++;
+    }
+  }
+  
+  N = sqroot(length);
+  
+  /* allocated memory for maze path and checked arrays */
+  maze = calloc(N, sizeof(int *));
+  path = calloc(N, sizeof(int *));
+  memoized = calloc(N, sizeof(int *));
+  if (maze == NULL || path == NULL || memoized == NULL)
+  {
+    printf("Out of space\n");
+    return 1;
+  }
+
+  i = 0, j = 0, k = 0;  
+  for(i = 0; i < N; i++)
+  {
+    maze[i] = calloc(N, sizeof(int *));
+    path[i] = calloc(N, sizeof(int *));
+    memoized[i] = calloc(N, sizeof(int *));
+    for(j = 0; j < N; j++)
+    {
+      maze[i][j] = buffer[k++];
+      path[i][j] = 0;
+      memoized[i][j] = 0;
     }
   }
 
-  N = sqroot(len);
-  maze = malloc(sizeof(int *) * N);
-  path = malloc(sizeof(int *) * N);
-    
-  for(i = 0; i < N; i++)
-  {
-    maze[i] = malloc(sizeof(int) * N);
-    path[i] = malloc(sizeof(int) * N);
-    for(j = 0; j < N; j++)
-    {
-      maze[i][j] = tmp1[k++];
-      path[i][j] = 0;
-    }
-  }
-  
-  if (findPath(0, 0, N) == 1)
+  /* check for path */
+  last = N - 1;
+  if (findPath(0, 0) == 1)
   {
     printf("PATH FOUND!\n");
     printPath();
@@ -69,21 +84,19 @@ int main(void)
   {
     printf("no path found.\n");
   }
-  
-  printf("\nN: %d\nRecursive Calls: %d\n",N, numOfRecCalls);
-  
+
+  /* printf("Calls: %d Memo: %d\n", numOfCalls, memo); */
   /* free all allocated memory */
-  free(tmp1);
+  free(buffer);
   for (i = 0; i < N; i++)
   {
     free(maze[i]);
     free(path[i]);
-    /* free(checked[i]); */
+    free(memoized[i]);
   }
   free(maze);
   free(path);
-  /* free(checked); */
+  free(memoized);
+  
   return 0;
 }
-
-

@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 CC=gcc
 CFLAGS=-pedantic -ansi -Wall
-TESTMAZE=maze1.in
+TESTMAZE=maze4.in
 
 all: maze
 
