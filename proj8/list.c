@@ -48,10 +48,24 @@ int clinicOpenTime()
 {
   return ((7 * 60 * 60) + (30 * 60));
 }
+
 int notYetServed(int i)
 {
-  int block =  arrivalTime(i) - clinicOpenTime();
-  if ((block > twoHours) && (serve/period > patients[i].id))
+  int timePast =  arrivalTime(i) - clinicOpenTime();
+  int numOfPeriods = timePast/period;
+  /*Current time is the time of the  patient being served right now or 
+   *supposed to be served right now, so at index of numOfPeriods;
+   *
+   **/
+  int seconds =  pateints[numOfPeriods].seconds;
+  int minutes = patients[numOfPeriods].minutes * 60;
+  int hour = patients[numOfperiods].hour * 3600;
+  int currentTime = hour + minutes + seconds; /*all are in seconds here*/
+
+  int waitTime = arrivalTime(i) - currentTime; 
+  /* patients[i].waitTime = waitTime + (time between the last patient
+   *with pain of 10 and this patient)*/
+  if ((waitTime > twoHours) && (numOfPeriods < patients[i].id))
   {
     return 1; /* this patient have not been served yet */
   }

@@ -1,5 +1,5 @@
 #ifndef this_header_file
-#define thie_header_file
+#define this_header_file
 
 #define MAX_PATIENTS 100
 
@@ -22,6 +22,10 @@ extern int patient_count;
 
 void sort();
 void swap(int i, int j);
+
+int clinicOpenTime();
 long arrivalTime(int i);
 int comeFirst(int i, int j);
+int notYetServed(int i);
+int longerThan2Hours(int i);
 #endif
