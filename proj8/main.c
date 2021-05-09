@@ -21,12 +21,13 @@ int main(int argc, char *argv[])
     char line[lineLen];
     patient *tmp;
     patients = malloc(maxSize * sizeof(patient));    
-    if (argc != 3)
-    {
-	printf("Usage: ./main input_file output_file\n");
-	return 1;
-    }
 
+    if (argc != 2)
+    {
+      printf("Usage: ./main inputfile\n");
+      return 1;
+    }
+    
     inFile = fopen(argv[1], "r");
     if (!inFile)
     {
@@ -39,30 +40,31 @@ int main(int argc, char *argv[])
 
     while(fgets(line, lineLen, inFile))
     {
-	if (currentSize++ >= maxSize)
-	{
-	    maxSize += (maxSize/2);
-	    tmp = realloc(patients, maxSize * sizeof(patient));
-	    if (tmp == NULL)
-	    {
-		printf("Out of memory");
-		return 3;
-	    }
-	    patients = tmp;
-	    free(tmp);
-	}
-	sscanf(line,"%d%d:%d:%d%d%d",&patients[i].id, &patients[i].hour,
-	       &patients[i].minutes,&patients[i].seconds,
-	       &patients[i].age, &patients[i].pain);
-	patient_count++;
-	i++;
+    	if (currentSize++ >= maxSize)
+    	{
+    	    maxSize += (maxSize/2);
+    	    tmp = realloc(patients, maxSize * sizeof(patient));
+    	    if (tmp == NULL)
+    	    {
+    		printf("Out of memory");
+    		return 3;
+    	    }
+    	    patients = tmp;
+    	    free(tmp);
+    	}
+    	sscanf(line,"%d%d:%d:%d%d%d",&patients[i].id, &patients[i].hour,
+    	       &patients[i].minutes,&patients[i].seconds,
+    	       &patients[i].age, &patients[i].pain);
+    	patient_count++;
+    	i++;
     }
 
     /* printf("patient_count: %d\n", patient_count); */
     /* initialize(); */
     /* enqueue(); */
-
-    outFile = fopen(argv[2], "w");
+    
+    fclose(inFile);
+    outFile = fopen("mylist.txt", "w");
     for (i = 0; i < patient_count; i++)
     {
     	/* fprintf(outFile, */
@@ -75,8 +77,7 @@ int main(int argc, char *argv[])
     	/* 	queue[i].id, queue[i].pain, queue[i].age, queue[i].waitTime); */
     }
 
-    /* free(patients); */
-    fclose(inFile);
+    free(patients);
     fclose(outFile);
 
     return 0;
