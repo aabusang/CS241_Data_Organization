@@ -10,7 +10,7 @@
 #include "header.h"
 
 int patient_count = 0;
-patient *patients = NULL;
+patient *patients;
 
 int main(int argc, char *argv[])
 {
@@ -19,7 +19,8 @@ int main(int argc, char *argv[])
     int initialSize = 10, currentSize = 0;
     int maxSize = initialSize;
     char line[lineLen];
-
+    patient *tmp;
+    patients = malloc(maxSize * sizeof(patient));    
     if (argc != 3)
     {
 	printf("Usage: ./main input_file output_file\n");
@@ -33,7 +34,7 @@ int main(int argc, char *argv[])
 	return 1;
     }
     
-    patients = malloc(maxSize * sizeof(patient));
+
     patient_count = 0;
 
     while(fgets(line, lineLen, inFile))
@@ -41,7 +42,7 @@ int main(int argc, char *argv[])
 	if (currentSize++ >= maxSize)
 	{
 	    maxSize += (maxSize/2);
-	    patient *tmp = realloc(patients, maxSize * sizeof(patient));
+	    tmp = realloc(patients, maxSize * sizeof(patient));
 	    if (tmp == NULL)
 	    {
 		printf("Out of memory");

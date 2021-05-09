@@ -14,7 +14,8 @@ struct Patient
 };
 
 typedef struct Patient patient;
-extern patient *patients, *queue;
+extern patient *patients;
+extern patient *queue;
 extern int patient_count;
 extern int position;
 

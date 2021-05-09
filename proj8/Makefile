@@ -1,9 +1,9 @@
 main: main.o list.o
-	gcc main.o list.o -o main
+	cc main.o list.o -o -g main
 main.o: main.c
-	gcc -c main.c
+	cc -c main.c
 list.o: list.c
-	gcc -c list.c
+	cc -c list.c
 run:
 	./main arrivals.log mylist.txt
 clean:
