@@ -9,8 +9,8 @@
 
 #include "header.h"
 
+int patient_count = 0;
 patient *patients;
-int patient_count;
 
 int main(int argc, char *argv[])
 {
@@ -21,18 +21,17 @@ int main(int argc, char *argv[])
     char line[lineLen];
 
     patients = malloc(maxSize * sizeof(patient));
-
-    /* int *nums = malloc(10 * sizeof(int)) */
-    patient *tmp;
     patient_count = 0;
 
-    /* check for the right number of command line arguments */
+    patient *tmp;
+
+
     if (argc != 3)
     {
 	printf("Usage: ./main input_file output_file\n");
 	return 1;
     }
-    /* open input file for reading */
+
     inFile = fopen(argv[1], "r");
     if (!inFile)
     {
@@ -50,6 +49,7 @@ int main(int argc, char *argv[])
 		printf("Out of memory");
 		return 3;
 	    }
+	    patients = tmp;
 	}
 	sscanf(line,"%d%d:%d:%d%d%d",&patients[i].id, &patients[i].hour,
 	       &patients[i].minutes,&patients[i].seconds,
@@ -58,22 +58,24 @@ int main(int argc, char *argv[])
 	i++;
     }
 
-    /*initial all 0 starting incremental data of patients*/
+    printf("patient_count: %d\n", patient_count);
     initialize();
-    /* sort the patients according hospital rules */
-    sort();
+    enqueue();
 
-    /* write the final queue to the output file */
     outFile = fopen(argv[2], "w");
     for (i = 0; i < patient_count; i++)
     {
-	fprintf(outFile,
-		"%02d:%02d:%02d Patient: ID = %d, Pain Level (1-10) = %d, Age = %d years, Time waiting = %d\n",
-		patients[i].hour, patients[i].minutes, patients[i].seconds,
-		patients[i].id, patients[i].pain, patients[i].age, patients[i].waitTime);
+	/* fprintf(outFile, */
+	/* 	"%02d:%02d:%02d Patient: ID = %d, Pain Level (1-10) = %d, Age = %d years, Time waiting = %d\n", */
+	/* 	patients[i].hour, patients[i].minutes, patients[i].seconds, */
+	/* 	patients[i].id, patients[i].pain, patients[i].age, patients[i].waitTime); */
+	/* fprintf(outFile, */
+	/* 	"%02d:%02d:%02d Patient: ID = %d, Pain Level (1-10) = %d, Age = %d years, Time waiting = %d\n", */
+	/* 	queue[i].hour, queue[i].minutes, queue[i].seconds, */
+	/* 	queue[i].id, queue[i].pain, queue[i].age, queue[i].waitTime); */
     }
 
-    /* close opened files */
+    
     fclose(inFile);
     fclose(outFile);
 

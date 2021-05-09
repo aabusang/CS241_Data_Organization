@@ -1,5 +1,5 @@
-#ifndef this_header_file
-#define this_header_file
+#ifndef header
+#define header
 
 struct Patient
 {
@@ -10,27 +10,35 @@ struct Patient
     int age;
     int pain;
     int waitTime;
-    int waitingPerBlock;
-    int priority;
+    int served;
 };
 
 typedef struct Patient patient;
-
-
+extern patient *patients, *queue;
 extern int patient_count;
-extern patient *patients;
+extern int position;
 
-/*Major functions*/
-void sort15MinsBlock();
-void calcPriority();
-patient getNextPatient();
-void sort();
-
-
-/*Helper functions*/
 void initialize();
-long arrivalTime(int i);
+void enqueue();
+long arrivalTime(int id);
+
+void addToNext15(int patientIndex);
+void sortNext15(int numOfPatients);
+void addToFinalList(patient next);
+
+
 int notYetServed(int i);
 int longerThan2Hours(int i);
 void swap(int i, int j);
+
+
+void printp(patient p);
+void printNext15(int size);
+
+extern const int openTime;
+extern const int period;
+extern const int twoHours;
+extern long currentTime;
+
+
 #endif
