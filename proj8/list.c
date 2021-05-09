@@ -10,13 +10,29 @@
 int initialSize = 15;
 int maxSize = 0, last = -1;
 int position = 0;
-const int openTime = ((7*60*60) + (30*60));
-const int period = 15 * 60;
-const int twoHours = period * 8;
-long currentTime = openTime + period;
+int openTime = ((7*60*60) + (30*60));
+int period = 15 * 60;
+int twoHours;
+long currentTime;
 
 patient *next15;
 patient *queue;
+
+/**
+ * Initialized served and wait_time of patients to 0
+ * @returns nothing
+ ***/
+void initialize()
+{
+  twoHours = period * 8;
+  currentTime = openTime + period;
+  
+    int i;
+    for (i = 0; i < patient_count; i++)
+    {
+	patients[i].served = 0;
+    }
+}
 
 void enqueue()
 {
@@ -42,6 +58,7 @@ void enqueue()
 		    patient *tmp = realloc(next15, maxSize*sizeof(patient));
 		    if (tmp == NULL) return;
 		    next15 = tmp;
+		    free(tmp);
 		}
 		if (patients[j].served == 0)
 		{
@@ -190,16 +207,3 @@ void swap(int i, int j)
     next15[j] = tmp;
 }
 
-
-/**
- * Initialized served and wait_time of patients to 0
- * @returns nothing
- ***/
-void initialize()
-{
-    int i;
-    for (i = 0; i < patient_count; i++)
-    {
-	patients[i].served = 0;
-    }
-}

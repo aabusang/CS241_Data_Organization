@@ -35,9 +35,9 @@ void swap(int i, int j);
 void printp(patient p);
 void printNext15(int size);
 
-extern const int openTime;
-extern const int period;
-extern const int twoHours;
+extern int openTime;
+extern int period;
+extern int twoHours;
 extern long currentTime;
 
 
