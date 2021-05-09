@@ -1,6 +1,6 @@
 /*
  * By: Adam Abusang
- * A program to queue patients in a clinic 
+ * A program to queue patients in a clinic
  * considering patients pain level, age, arrival time and wait time
  ******************************************************************/
 #include <stdio.h>
@@ -10,7 +10,7 @@
 #include "header.h"
 
 int patient_count = 0;
-patient *patients;
+patient *patients = NULL;
 
 int main(int argc, char *argv[])
 {
@@ -19,8 +19,6 @@ int main(int argc, char *argv[])
     int initialSize = 10, currentSize = 0;
     int maxSize = initialSize;
     char line[lineLen];
-
-
 
     if (argc != 3)
     {
@@ -34,35 +32,34 @@ int main(int argc, char *argv[])
 	printf("File [%s] could not be read in\n", argv[1]);
 	return 1;
     }
-
+    
     patients = malloc(maxSize * sizeof(patient));
     patient_count = 0;
-    patient *tmp;
 
     while(fgets(line, lineLen, inFile))
     {
-    	if (currentSize++ >= maxSize)
-    	{
-    	    maxSize += (maxSize/2);
-    	    tmp = realloc(patients, maxSize * sizeof(patient));
-    	    if (tmp == NULL)
-    	    {
-    		printf("Out of memory");
-    		return 3;
-    	    }
-    	    patients = tmp;
-    	    free(tmp);
-    	}
-    	sscanf(line,"%d%d:%d:%d%d%d",&patients[i].id, &patients[i].hour,
-    	       &patients[i].minutes,&patients[i].seconds,
-    	       &patients[i].age, &patients[i].pain);
-    	patient_count++;
-    	i++;
+	if (currentSize++ >= maxSize)
+	{
+	    maxSize += (maxSize/2);
+	    patient *tmp = realloc(patients, maxSize * sizeof(patient));
+	    if (tmp == NULL)
+	    {
+		printf("Out of memory");
+		return 3;
+	    }
+	    patients = tmp;
+	    free(tmp);
+	}
+	sscanf(line,"%d%d:%d:%d%d%d",&patients[i].id, &patients[i].hour,
+	       &patients[i].minutes,&patients[i].seconds,
+	       &patients[i].age, &patients[i].pain);
+	patient_count++;
+	i++;
     }
 
-    printf("patient_count: %d\n", patient_count);
-    initialize();
-    enqueue();
+    /* printf("patient_count: %d\n", patient_count); */
+    /* initialize(); */
+    /* enqueue(); */
 
     outFile = fopen(argv[2], "w");
     for (i = 0; i < patient_count; i++)
