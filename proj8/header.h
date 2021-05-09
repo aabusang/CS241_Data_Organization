@@ -1,27 +1,44 @@
-#ifndef this_header_file
-#define thie_header_file
-
-#define MAX_PATIENTS 100
+#ifndef header
+#define header
 
 struct Patient
 {
-  int hour;
-  int minutes;
-  int seconds;
-  int id;
-  int age;
-  int pain;
-  int wait_time;
+    int hour;
+    int minutes;
+    int seconds;
+    int id;
+    int age;
+    int pain;
+    int waitTime;
+    int served;
 };
 
 typedef struct Patient patient;
-
-
-extern patient patients[MAX_PATIENTS];
+extern patient *patients, *queue;
 extern int patient_count;
+extern int position;
 
-void sort();
+void initialize();
+void enqueue();
+long arrivalTime(int id);
+
+void addToNext15(int patientIndex);
+void sortNext15(int numOfPatients);
+void addToFinalList(patient next);
+
+
+int notYetServed(int i);
+int longerThan2Hours(int i);
 void swap(int i, int j);
-long arrivalTime(int i);
-int comeFirst(int i, int j);
+
+
+void printp(patient p);
+void printNext15(int size);
+
+extern const int openTime;
+extern const int period;
+extern const int twoHours;
+extern long currentTime;
+
+
 #endif
