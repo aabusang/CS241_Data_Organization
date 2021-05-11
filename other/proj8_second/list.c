@@ -12,9 +12,9 @@
  *****************************************/
 void startTime(Time *time, int hours, int mins, int secs)
 {
-    time->hours = hours;
-    time->minutes = mins;
-    time->sec = secs;
+  time->hours = hours;
+  time->minutes = mins;
+  time->sec = secs;
 }
 
 
@@ -26,95 +26,95 @@ void startTime(Time *time, int hours, int mins, int secs)
  ******************************************************/
 void showTime(FILE *out, Time t, int mode)
 {
-    if (t.hours < 10 && t.minutes < 10 && t.sec < 10)
+  if (t.hours < 10 && t.minutes < 10 && t.sec < 10)
+  {
+    if (mode == 0)
     {
-	if (mode == 0)
-	{
-	    fprintf(out,"0%d:0%d:0%d", t.hours, t.minutes, t.sec);
-	}
-	else
-	{
-	    fprintf(out, "0%dh0%dm0%ds\n", t.hours, t.minutes, t.sec);
-	}
-    }
-    else if (t.hours<10 && t.minutes < 10)
-    {
-	if (mode == 0)
-	{
-	    fprintf(out, "0%d:0%d:%d", t.hours, t.minutes, t.sec);
-	}
-	else
-	{
-	    fprintf(out,"0%dh0%dm%ds\n", t.hours, t.minutes, t.sec);
-	}
-		
-    }
-    else if (t.hours < 10 && t.sec < 10)
-    {
-	if (mode == 0)
-	{
-	    fprintf(out, "0%d:%d:0%d", t.hours, t.minutes, t.sec);
-	}
-	else
-	{
-	    fprintf(out, "0%dh%dm0%ds\n", t.hours, t.minutes, t.sec);
-	}
-    }
-    else if (t.minutes < 10 && t.sec < 10)
-    {
-	if(mode == 0)
-	{
-	    fprintf(out, "%d:0%d:0%d", t.hours, t.minutes, t.sec);
-	}
-	else
-	{
-	    fprintf(out, "%dh0%dm0%ds\n", t.hours, t.minutes, t.sec);
-	}
-    }
-    else if(t.hours < 10)
-    {
-	if(mode == 0)
-	{
-	    fprintf(out, "0%d:%d:%d", t.hours, t.minutes, t.sec);
-	}
-	else 
-	{
-	    fprintf(out, "0%dh%dm%ds\n", t.hours, t.minutes, t.sec);
-	}
-    }
-    else if (t.minutes < 10)
-    {
-	if(mode == 0)
-	{
-	    fprintf(out, "%d:0%d:%d", t.hours, t.minutes, t.sec);
-	}
-	else
-	{
-	    fprintf(out, "%dh0%dm%ds\n", t.hours, t.minutes, t.sec);
-	}
-    }
-    else if (t.sec < 10)
-    {
-	if(mode == 0)
-	{
-	    fprintf(out, "%d:%d:0%d", t.hours, t.minutes, t.sec);
-	}
-	else
-	{
-	    fprintf(out, "%dh%dm0%ds\n", t.hours, t.minutes, t.sec);
-	}
+      fprintf(out,"0%d:0%d:0%d", t.hours, t.minutes, t.sec);
     }
     else
     {
-	if (mode == 0)
-	{
-	    fprintf(out, "%d:%d:%d", t.hours, t.minutes, t.sec);
-	}
-	else
-	{
-	    fprintf(out, "%dh%dm%ds\n", t.hours, t.minutes, t.sec);
-	}
+      fprintf(out, "0%dh0%dm0%ds\n", t.hours, t.minutes, t.sec);
     }
+  }
+  else if (t.hours<10 && t.minutes < 10)
+  {
+    if (mode == 0)
+    {
+      fprintf(out, "0%d:0%d:%d", t.hours, t.minutes, t.sec);
+    }
+    else
+    {
+      fprintf(out,"0%dh0%dm%ds\n", t.hours, t.minutes, t.sec);
+    }
+		
+  }
+  else if (t.hours < 10 && t.sec < 10)
+  {
+    if (mode == 0)
+    {
+      fprintf(out, "0%d:%d:0%d", t.hours, t.minutes, t.sec);
+    }
+    else
+    {
+      fprintf(out, "0%dh%dm0%ds\n", t.hours, t.minutes, t.sec);
+    }
+  }
+  else if (t.minutes < 10 && t.sec < 10)
+  {
+    if(mode == 0)
+    {
+      fprintf(out, "%d:0%d:0%d", t.hours, t.minutes, t.sec);
+    }
+    else
+    {
+      fprintf(out, "%dh0%dm0%ds\n", t.hours, t.minutes, t.sec);
+    }
+  }
+  else if(t.hours < 10)
+  {
+    if(mode == 0)
+    {
+      fprintf(out, "0%d:%d:%d", t.hours, t.minutes, t.sec);
+    }
+    else 
+    {
+      fprintf(out, "0%dh%dm%ds\n", t.hours, t.minutes, t.sec);
+    }
+  }
+  else if (t.minutes < 10)
+  {
+    if(mode == 0)
+    {
+      fprintf(out, "%d:0%d:%d", t.hours, t.minutes, t.sec);
+    }
+    else
+    {
+      fprintf(out, "%dh0%dm%ds\n", t.hours, t.minutes, t.sec);
+    }
+  }
+  else if (t.sec < 10)
+  {
+    if(mode == 0)
+    {
+      fprintf(out, "%d:%d:0%d", t.hours, t.minutes, t.sec);
+    }
+    else
+    {
+      fprintf(out, "%dh%dm0%ds\n", t.hours, t.minutes, t.sec);
+    }
+  }
+  else
+  {
+    if (mode == 0)
+    {
+      fprintf(out, "%d:%d:%d", t.hours, t.minutes, t.sec);
+    }
+    else
+    {
+      fprintf(out, "%dh%dm%ds\n", t.hours, t.minutes, t.sec);
+    }
+  }
 }
 
 
@@ -125,12 +125,12 @@ void showTime(FILE *out, Time t, int mode)
  ***********************************************************/
 void showPatientData(Patient* p)
 {
-    if(p == NULL) return;
-    printf(" Patient: ID = %2d,  Pain Level (1-10) = %2d,\
+  if(p == NULL) return;
+  printf(" Patient: ID = %2d,  Pain Level (1-10) = %2d,\
 Age = %2d years, Time waiting = ",
-	   p->id,p->painLevel,p->age);
+	 p->id,p->painLevel,p->age);
 
-    showTime(stdout,p->waitingTime,1);
+  showTime(stdout,p->waitingTime,1);
 }
 
 /*************************
@@ -140,11 +140,11 @@ Age = %2d years, Time waiting = ",
  ***********************************/
 void storePatientData(FILE *out, Patient *p)
 {
-    if(p == NULL) return;
-    fprintf(out, " Patient: ID = %d, Pain Level (1-10) = %d,\
+  if(p == NULL) return;
+  fprintf(out, " Patient: ID = %d, Pain Level (1-10) = %d,\
  Age = %d years, Time waiting = ", p->id,p->painLevel,p->age);
 
-    showTime(out,p->waitingTime,1);
+  showTime(out,p->waitingTime,1);
 }
 
 
@@ -155,12 +155,12 @@ void storePatientData(FILE *out, Patient *p)
  **********************************************************************/
 void showData(Queue *queue)
 {
-    Patient *cursor = queue->start;
-    while(cursor != NULL)
-    {
-	showPatientData(cursor);
-	cursor = cursor->next;
-    }
+  Patient *cursor = queue->start;
+  while(cursor != NULL)
+  {
+    showPatientData(cursor);
+    cursor = cursor->next;
+  }
 }
 
 
@@ -170,11 +170,11 @@ void showData(Queue *queue)
  ****************************************************************/
 void showData2(Patient *patients[], const int size)
 {
-    int i;
-    for( i = 0; i<size; i++)
-    {
-	showPatientData(patients[i]);
-    }
+  int i;
+  for( i = 0; i<size; i++)
+  {
+    showPatientData(patients[i]);
+  }
 }
 
 
@@ -184,14 +184,14 @@ void showData2(Patient *patients[], const int size)
  *********************************************/
 Queue* initQueue()
 {
-    Queue* queue = (Queue*) malloc(sizeof(Queue));
-    if(queue == NULL) return NULL;
+  Queue* queue = (Queue*) malloc(sizeof(Queue));
+  if(queue == NULL) return NULL;
   
-    queue->start = NULL;
-    queue->end = NULL;
-    queue->pCount = 0;
+  queue->start = NULL;
+  queue->end = NULL;
+  queue->pCount = 0;
   
-    return queue;
+  return queue;
 }
 
 
@@ -204,17 +204,17 @@ Queue* initQueue()
 
 Patient* initPatient(int id, Time time, int age, int painLevel)
 {
-    Patient* patient = (Patient*) malloc(sizeof(Patient));
-    patient->id = id;
-    patient->painLevel = painLevel;
-    patient->age = age;
+  Patient* patient = (Patient*) malloc(sizeof(Patient));
+  patient->id = id;
+  patient->painLevel = painLevel;
+  patient->age = age;
   
-    startTime(&patient->arrivalTime, time.hours,time.minutes,time.sec);
-    startTime(&patient->waitingTime,0,0,0);
+  startTime(&patient->arrivalTime, time.hours,time.minutes,time.sec);
+  startTime(&patient->waitingTime,0,0,0);
   
-    patient->next = NULL;
+  patient->next = NULL;
   
-    return patient;
+  return patient;
 }
 
 
@@ -227,23 +227,23 @@ Patient* initPatient(int id, Time time, int age, int painLevel)
 
 void enqueue(Queue *queue, Patient *patient)
 {
-    /*printf("********** Adding the patient*******\n")*/;
-    if(queue->start == NULL)
-    {
-	queue->start = patient;
-	queue->end = patient;
-	queue->pCount++;
-    }
-    else if(queue->start->id == queue->end->id){
-	queue->start->next = patient;
-	queue->end = patient;
-	queue->pCount++;
-    }
-    else{
-	queue->end->next = patient;
-	queue->end = patient;
-	queue->pCount++;
-    }
+  /*printf("********** Adding the patient*******\n")*/;
+  if(queue->start == NULL)
+  {
+    queue->start = patient;
+    queue->end = patient;
+    queue->pCount++;
+  }
+  else if(queue->start->id == queue->end->id){
+    queue->start->next = patient;
+    queue->end = patient;
+    queue->pCount++;
+  }
+  else{
+    queue->end->next = patient;
+    queue->end = patient;
+    queue->pCount++;
+  }
 }
 
 
@@ -254,18 +254,18 @@ void enqueue(Queue *queue, Patient *patient)
  **********************************************************/
 void updateTime(Time *time)
 {
-    time->sec++;
-    if(time->sec >= 60)
-    {
-	time->sec = time->sec%60;
-	time->minutes++;
+  time->sec++;
+  if(time->sec >= 60)
+  {
+    time->sec = time->sec%60;
+    time->minutes++;
     
-	if(time->minutes >= 60)
-	{
-	    time->minutes = time->minutes%60;
-	    time->hours++;
-	}
+    if(time->minutes >= 60)
+    {
+      time->minutes = time->minutes%60;
+      time->hours++;
     }
+  }
 }
 
 
@@ -279,16 +279,16 @@ void updateTime(Time *time)
 
 void updateWaitingTime(Queue *queue)
 {
-    Patient* patient;
-    if(queue == NULL) return;
+  Patient* patient;
+  if(queue == NULL) return;
 	
-    patient = queue->start;
+  patient = queue->start;
 	
-    while(patient != NULL)
-    {
-	updateTime(&patient->waitingTime);
-	patient = patient->next;
-    }
+  while(patient != NULL)
+  {
+    updateTime(&patient->waitingTime);
+    patient = patient->next;
+  }
 }
 
 
@@ -300,37 +300,37 @@ void updateWaitingTime(Queue *queue)
  ************************************************************/
 void dischargePatient(Queue *queue, Patient *patient)
 {
-    /*printf("************** Discharge Patient************\n");*/
-    Patient *cursor;
-    Patient *prev;
-    if(patient == NULL || queue == NULL) return;
+  /*printf("************** Discharge Patient************\n");*/
+  Patient *cursor;
+  Patient *prev;
+  if(patient == NULL || queue == NULL) return;
   
-    cursor = queue->start;
-    prev = NULL;
-    /* traverse and find the patient*/
-    while(cursor != NULL && cursor->id != patient->id)
-    {
-	prev = cursor;
-	cursor = cursor->next;
-    }
-    if(cursor == queue->start && cursor != NULL)
-    {
-	queue->start = cursor->next;
-	/*cursor is selected, break the connection with the its next node*/
-	cursor->next = NULL;
-    }
-    else if( cursor != NULL && cursor->id == queue->end->id)
-    {
-	queue->end = prev;	/* move end to backward*/
-	prev->next = NULL; /* assign NULL to next of this*/
-    }
-    else if(cursor != NULL)
-    { 
-	/* found the patient*/
-	prev->next = cursor->next;
-	/*cursor is selected, break the connection with the its next node*/
-	cursor->next = NULL; 
-    }
+  cursor = queue->start;
+  prev = NULL;
+  /* traverse and find the patient*/
+  while(cursor != NULL && cursor->id != patient->id)
+  {
+    prev = cursor;
+    cursor = cursor->next;
+  }
+  if(cursor == queue->start && cursor != NULL)
+  {
+    queue->start = cursor->next;
+    /*cursor is selected, break the connection with the its next node*/
+    cursor->next = NULL;
+  }
+  else if( cursor != NULL && cursor->id == queue->end->id)
+  {
+    queue->end = prev;	/* move end to backward*/
+    prev->next = NULL; /* assign NULL to next of this*/
+  }
+  else if(cursor != NULL)
+  { 
+    /* found the patient*/
+    prev->next = cursor->next;
+    /*cursor is selected, break the connection with the its next node*/
+    cursor->next = NULL; 
+  }
 }
 
 
@@ -342,25 +342,25 @@ void dischargePatient(Queue *queue, Patient *patient)
  *****************************************************************************/
 int tooLate(Patient *patient)
 {
-    /*printf("********* To Late ************\n");*/
-    int flag = 0;
-    if(patient->waitingTime.hours > 2)
-    {
-	flag = 1;
-    }
-    else if(patient->waitingTime.hours == 2 &&
-	    patient->waitingTime.minutes > 0 )
-    {
-	flag = 1;
-    }
-    else if(patient->waitingTime.hours == 2 &&
-	    patient->waitingTime.minutes == 0 &&
-	    patient->waitingTime.sec >0 )
-    {
-	flag = 1;
-    }
+  /*printf("********* To Late ************\n");*/
+  int flag = 0;
+  if(patient->waitingTime.hours > 2)
+  {
+    flag = 1;
+  }
+  else if(patient->waitingTime.hours == 2 &&
+	  patient->waitingTime.minutes > 0 )
+  {
+    flag = 1;
+  }
+  else if(patient->waitingTime.hours == 2 &&
+	  patient->waitingTime.minutes == 0 &&
+	  patient->waitingTime.sec >0 )
+  {
+    flag = 1;
+  }
   
-    return flag;
+  return flag;
 }
 
 
@@ -373,33 +373,33 @@ int tooLate(Patient *patient)
 
 int arriveBefore(Time source,Time target)
 {
-    /*printf("**************Arrived Before **********\n");*/
-    int flag = 1;
+  /*printf("**************Arrived Before **********\n");*/
+  int flag = 1;
 	
-    if(target.hours < source.hours)
-    {
-	flag  = 0;
-    }
-    else if(target.hours == source.hours &&
-	    target.minutes < source.minutes)
-    {
-	flag  = 0;
-    }
-    else if(target.hours == source.hours &&
-	    target.minutes == source.minutes &&
-	    target.sec < source.sec)
-    {
-	flag  = 0;
-    }
-    else if(target.hours == source.hours &&
-	    target.minutes == source.minutes &&
-	    target.sec == source.sec)
-    {
-      	/* if arrival time is same*/
-	flag  = 0;
-    }
+  if(target.hours < source.hours)
+  {
+    flag  = 0;
+  }
+  else if(target.hours == source.hours &&
+	  target.minutes < source.minutes)
+  {
+    flag  = 0;
+  }
+  else if(target.hours == source.hours &&
+	  target.minutes == source.minutes &&
+	  target.sec < source.sec)
+  {
+    flag  = 0;
+  }
+  else if(target.hours == source.hours &&
+	  target.minutes == source.minutes &&
+	  target.sec == source.sec)
+  {
+    /* if arrival time is same*/
+    flag  = 0;
+  }
     
-    return flag;
+  return flag;
 }
 
 
@@ -412,48 +412,48 @@ int arriveBefore(Time source,Time target)
 
 Patient* getNext(Queue *queue)
 {
-    /*printf("************ getNext **************\n");*/
-    /* to save reference of requested patient*/
-    Patient *myTurn = queue->start;	
-    /* to traverse the list*/	
-    Patient *cursor = queue->start;
+  /*printf("************ getNext **************\n");*/
+  /* to save reference of requested patient*/
+  Patient *myTurn = queue->start;	
+  /* to traverse the list*/	
+  Patient *cursor = queue->start;
 	
-    while( cursor!= NULL)
+  while( cursor!= NULL)
+  {
+    if (cursor->painLevel == 10)
     {
-	if (cursor->painLevel == 10)
-	{
-	    myTurn = cursor;
-	    break;
-	}
-	else if ((!tooLate(myTurn)) && tooLate(cursor))
-	{
-	    /* waited more than 2 hours*/
-	    myTurn = cursor;
-	}
-	else if ((!tooLate(myTurn)) && (cursor->painLevel > myTurn->painLevel))
-	{
-      
-	    myTurn = cursor;
-	}
-	else if ((!tooLate(myTurn)) && cursor->painLevel == myTurn->painLevel &&
-		 cursor->age > myTurn->age)
-	{
-      
-	    myTurn = cursor;
-	}
-	else if ((!tooLate(myTurn)) && cursor->painLevel == myTurn->painLevel &&
-		 cursor->age == myTurn->age &&
-		 arriveBefore(cursor->arrivalTime,myTurn->arrivalTime)) 
-	{
-	    /*means cursor arrived first*/
-	    myTurn = cursor;
-	}
-	cursor = cursor->next;	
+      myTurn = cursor;
+      break;
     }
+    else if ((!tooLate(myTurn)) && tooLate(cursor))
+    {
+      /* waited more than 2 hours*/
+      myTurn = cursor;
+    }
+    else if ((!tooLate(myTurn)) && (cursor->painLevel > myTurn->painLevel))
+    {
+      
+      myTurn = cursor;
+    }
+    else if ((!tooLate(myTurn)) && cursor->painLevel == myTurn->painLevel &&
+	     cursor->age > myTurn->age)
+    {
+      
+      myTurn = cursor;
+    }
+    else if ((!tooLate(myTurn)) && cursor->painLevel == myTurn->painLevel &&
+	     cursor->age == myTurn->age &&
+	     arriveBefore(cursor->arrivalTime,myTurn->arrivalTime)) 
+    {
+      /*means cursor arrived first*/
+      myTurn = cursor;
+    }
+    cursor = cursor->next;	
+  }
 
   
-    dischargePatient(queue,myTurn);	
-    return myTurn;
+  dischargePatient(queue,myTurn);	
+  return myTurn;
 }
 
 
@@ -466,13 +466,13 @@ Patient* getNext(Queue *queue)
 
 int isArrived(Time arrivalTime,Time currTime)
 {
-    /*printf("*********** Is Arrived ************\n");*/
+  /*printf("*********** Is Arrived ************\n");*/
 	
-    if(arriveBefore(arrivalTime,currTime))
-    {
-	return 1;
-    }
-    else return 0;
+  if(arriveBefore(arrivalTime,currTime))
+  {
+    return 1;
+  }
+  else return 0;
 }
 
 
@@ -488,58 +488,58 @@ int isArrived(Time arrivalTime,Time currTime)
 
 void processPatients(FILE *out,Queue *source,const int no_patients)
 {
-    /*printf("************ Process Patients ****************\n");*/
-    Queue* readyQueue = initQueue();
-    Time clock;
-    Time nextTurn;
-    int processed = 0;
+  /*printf("************ Process Patients ****************\n");*/
+  Queue* readyQueue = initQueue();
+  Time clock;
+  Time nextTurn;
+  int processed = 0;
   
-    startTime(&clock, 7, 30, 0);
-    startTime(&nextTurn, 7, 45, 0);
+  startTime(&clock, 7, 30, 0);
+  startTime(&nextTurn, 7, 45, 0);
 		
-    do
+  do
+  {
+    updateTime(&clock);
+    updateWaitingTime(readyQueue);
+		
+    /* Oppoint time arrived*/
+    if(clock.hours == nextTurn.hours &&
+       clock.minutes == nextTurn.minutes && clock.sec == nextTurn.sec)
     {
-	updateTime(&clock);
-	updateWaitingTime(readyQueue);
-		
-	/* Oppoint time arrived*/
-	if(clock.hours == nextTurn.hours &&
-	   clock.minutes == nextTurn.minutes && clock.sec == nextTurn.sec)
-	{
-	    Patient* patient = getNext(readyQueue);				
+      Patient* patient = getNext(readyQueue);				
 
-	    if(patient)
-	    {
-		/*store data in the file*/
-		/* 0 means h:m:s formate*/
-		showTime(out, clock, 0);	
-		storePatientData(out, patient);
-		processed++;
+      if(patient)
+      {
+	/*store data in the file*/
+	/* 0 means h:m:s formate*/
+	showTime(out, clock, 0);	
+	storePatientData(out, patient);
+	processed++;
 				
-		free(patient);
-	    }
+	free(patient);
+      }
       
-	    nextTurn.minutes += 15;
-	    if(nextTurn.minutes >= 60)
-	    {
-		nextTurn.minutes = nextTurn.minutes % 60;
-		nextTurn.hours++;
-	    }
-	}
+      nextTurn.minutes += 15;
+      if(nextTurn.minutes >= 60)
+      {
+	nextTurn.minutes = nextTurn.minutes % 60;
+	nextTurn.hours++;
+      }
+    }
 		
-	/* check if any patient has arrived then 
-	   add it into the readyQueue, remove it from source.*/
+    /* check if any patient has arrived then 
+       add it into the readyQueue, remove it from source.*/
     
-	while(source->start != NULL && isArrived(source->start->arrivalTime,clock))
-	{
-	    enqueue(readyQueue,source->start);
-	    updateTime(&source->start->waitingTime);
-	    dischargePatient(source,source->start);
-	}
-    	/* until all patients have been processed*/
-    }while(processed < no_patients);
+    while(source->start != NULL && isArrived(source->start->arrivalTime,clock))
+    {
+      enqueue(readyQueue,source->start);
+      updateTime(&source->start->waitingTime);
+      dischargePatient(source,source->start);
+    }
+    /* until all patients have been processed*/
+  }while(processed < no_patients);
 
-    free(readyQueue);
+  free(readyQueue);
 }
 
 /*************
@@ -549,19 +549,19 @@ void processPatients(FILE *out,Queue *source,const int no_patients)
  *************************************************/
 void clear(Queue *queue)
 {
-    if (queue)
-    {
-	Patient *cursor;
-	cursor = queue->start;
+  if (queue)
+  {
+    Patient *cursor;
+    cursor = queue->start;
 
-	while(cursor!= NULL)
-	{
-	    Patient *delMe = cursor;
-	    cursor = cursor->next;
+    while(cursor!= NULL)
+    {
+      Patient *delMe = cursor;
+      cursor = cursor->next;
       
-	    free(delMe);
-	}
-	free(queue);
+      free(delMe);
     }
+    free(queue);
+  }
 }
 
