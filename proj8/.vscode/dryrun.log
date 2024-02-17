@@ -1,7 +1,0 @@
-make --dry-run --always-make --keep-going --print-directory
-make: Entering directory `/Users/aabusang/Code/school/CS241/proj8'
-cc -c main.c
-cc -c list.c
-cc main.o list.o -o main
-make: Leaving directory `/Users/aabusang/Code/school/CS241/proj8'
- 
